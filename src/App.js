@@ -10,14 +10,6 @@ import Rank from "./components/Rank/Rank";
 import "./App.css";
 import "tachyons";
 
-let backendUrl = "";
-
-if (process.env.NODE_ENV === "production") {
-  backendUrl = "https://limitless-hamlet-82334.herokuapp.com";
-} else {
-  backendUrl = "http://localhost:3000";
-}
-
 const particlesOptions = {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -129,7 +121,7 @@ class App extends Component {
 
   onImageSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch(backendUrl + "/imageurl", {
+    fetch(process.env.REACT_APP_BACKEND_URL + "/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -139,7 +131,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch(backendUrl + "/image", {
+          fetch(process.env.REACT_APP_BACKEND_URL + "/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
