@@ -10,6 +10,12 @@ import Rank from "./components/Rank/Rank";
 import "./App.css";
 import "tachyons";
 
+if (process.env.RUN_ENV !== "production") {
+  const backendUrl = "http://localhost:3000";
+} else {
+  const backendUrl = process.env.BACKEND_URL;
+}
+
 const particlesOptions = {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -121,7 +127,7 @@ class App extends Component {
 
   onImageSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("http://localhost:3000/imageurl", {
+    fetch(backendUrl + "/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -131,7 +137,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("http://localhost:3000/image", {
+          fetch(backendUrl + "/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
