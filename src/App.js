@@ -10,10 +10,12 @@ import Rank from "./components/Rank/Rank";
 import "./App.css";
 import "tachyons";
 
-if (process.env.RUN_ENV !== "production") {
-  const backendUrl = "http://localhost:3000";
+let backendUrl = "";
+
+if (process.env.NODE_ENV === "production") {
+  backendUrl = "https://limitless-hamlet-82334.herokuapp.com";
 } else {
-  const backendUrl = process.env.BACKEND_URL;
+  backendUrl = "http://localhost:3000";
 }
 
 const particlesOptions = {
