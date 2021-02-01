@@ -121,7 +121,7 @@ class App extends Component {
 
   onImageSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch(process.env.REACT_APP_BACKEND_URL + "/imageurl", {
+    fetch("https://limitless-hamlet-82334.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -131,7 +131,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch(process.env.REACT_APP_BACKEND_URL + "/image", {
+          fetch("https://limitless-hamlet-82334.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

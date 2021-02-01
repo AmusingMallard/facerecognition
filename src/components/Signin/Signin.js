@@ -17,7 +17,7 @@ class Signin extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    fetch(process.env.REACT_APP_BACKEND_URL + "/signin", {
+    fetch("https://limitless-hamlet-82334.herokuapp.com/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
